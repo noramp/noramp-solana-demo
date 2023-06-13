@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingIcon from './NoRampButton/LoadingIcon';
+import LoadingIcon from './LoadingIcon';
 
 const LoadingOverlay = () => {
   return (
