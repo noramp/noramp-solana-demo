@@ -9,7 +9,7 @@ export default function Document() {
         <Main />
         <NextScript />
         <Script
-          src="https://checkout.noramp.io/noramp.min.js"
+          src="https://checkout-testnet.noramp.io/noramp.min.js"
           strategy="beforeInteractive"
         />
       </body>
