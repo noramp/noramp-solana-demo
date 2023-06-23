@@ -10,21 +10,6 @@ const MintPage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
-    window.addEventListener('message', (event) => {
-      if (event.data.event === 'noramp:onPayment') {
-        console.log('Payment event', event.data);
-
-        const type = event.data?.detail?.type;
-        const status = event.data?.detail?.data?.status;
-
-        if (type === 'finished' && status === 'paid') {
-          setSuccess(true);
-        }
-      }
-    });
-  }, []);
-
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       setIsLoading(true);
@@ -55,7 +40,7 @@ const MintPage: NextPage = () => {
 
           onSuccess: async (data: any) => {
             console.log('success', data);
-            // setSuccess(true);
+            setSuccess(true);
             setIsLoading(false);
           },
           onFailure: (err: any) => {

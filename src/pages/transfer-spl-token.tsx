@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import Celebrate from '../components/Celebrate';
 import { TRANSFER_CONFIG } from '../config/config';
@@ -10,21 +10,6 @@ import { TRANSFER_CONFIG } from '../config/config';
 const TransferPage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener('message', (event) => {
-      if (event.data.event === 'noramp:onPayment') {
-        console.log('Payment event', event.data);
-
-        const type = event.data?.detail?.type;
-        const status = event.data?.detail?.data?.status;
-
-        if (type === 'finished' && status === 'paid') {
-          setSuccess(true);
-        }
-      }
-    });
-  }, []);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,7 +24,7 @@ const TransferPage: NextPage = () => {
 
           onSuccess: async (data: any) => {
             console.log('success', data);
-            // setSuccess(true);
+            setSuccess(true);
             setIsLoading(false);
           },
           onFailure: (err: any) => {
@@ -56,7 +41,6 @@ const TransferPage: NextPage = () => {
           onEvent: console.log,
         });
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         window.NoRamp.open();
       } catch (e) {
@@ -68,7 +52,7 @@ const TransferPage: NextPage = () => {
 
   return (
     <div className="container flex flex-col items-center justify-center flex-1 gap-8 px-4 mx-auto">
-      <p className="text-2xl">Transfer NFT</p>
+      <p className="text-2xl">Transfer SPL-Token</p>
 
       <Image
         src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png"

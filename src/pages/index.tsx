@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextPage } from 'next';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Celebrate from '../components/Celebrate';
 import { NORAMP_PRICE_ID } from '../config/config';
 
@@ -8,26 +9,10 @@ const Home: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
-    window.addEventListener('message', (event) => {
-      if (event.data.event === 'noramp:onPayment') {
-        console.log('Payment event', event.data);
-
-        const type = event.data?.detail?.type;
-        const status = event.data?.detail?.data?.status;
-
-        if (type === 'finished' && status === 'paid') {
-          setSuccess(true);
-        }
-      }
-    });
-  }, []);
-
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       setIsLoading(true);
       event.preventDefault();
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       window.initializeNoRamp({
         priceId: NORAMP_PRICE_ID,
@@ -35,7 +20,7 @@ const Home: NextPage = () => {
 
         onSuccess: async (data: any) => {
           console.log('success', data);
-          // setSuccess(true);
+          setSuccess(true);
           setIsLoading(false);
         },
         onFailure: (err: any) => {
@@ -52,7 +37,6 @@ const Home: NextPage = () => {
         onEvent: console.log,
       });
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       window.NoRamp.open();
     },
@@ -61,7 +45,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="container flex flex-col items-center justify-center flex-1 gap-8 px-4 mx-auto">
-      <p className="text-2xl">Claim your SOL airdrop!</p>
+      <p className="text-2xl">Transfer SOL</p>
 
       <form onSubmit={handleSubmit} className="{styles.form}">
         <button
@@ -69,7 +53,7 @@ const Home: NextPage = () => {
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? 'Loading...' : 'Claim Now'}
+          {isLoading ? 'Loading...' : 'Transfer'}
         </button>
       </form>
 
