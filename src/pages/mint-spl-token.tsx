@@ -69,7 +69,7 @@ const MintPage: NextPage = () => {
 
   return (
     <div className="container flex flex-col items-center justify-center flex-1 gap-8 px-4 mx-auto">
-      <p className="text-2xl">Mint your NFT</p>
+      <p className="text-2xl">Mint SPL-Token</p>
 
       <form
         onSubmit={handleSubmit}
