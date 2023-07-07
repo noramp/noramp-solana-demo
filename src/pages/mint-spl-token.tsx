@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextPage } from 'next';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import Celebrate from '../components/Celebrate';
+import { IS_MAINNET } from '../config/config';
 import { createPrice } from '../lib/api';
 
 const MintPage: NextPage = () => {
@@ -36,7 +37,7 @@ const MintPage: NextPage = () => {
         // @ts-ignore
         window.initializeNoRamp({
           priceId: newPrice.id,
-          testnet: true,
+          testnet: !IS_MAINNET,
 
           onSuccess: async (data: any) => {
             console.log('success', data);

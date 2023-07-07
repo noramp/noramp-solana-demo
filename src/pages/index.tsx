@@ -3,7 +3,7 @@
 import type { NextPage } from 'next';
 import React, { useCallback, useState } from 'react';
 import Celebrate from '../components/Celebrate';
-import { NORAMP_PRICE_ID } from '../config/config';
+import { IS_MAINNET, NORAMP_PRICE_ID } from '../config/config';
 
 const Home: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       // @ts-ignore
       window.initializeNoRamp({
         priceId: NORAMP_PRICE_ID,
-        testnet: true,
+        testnet: !IS_MAINNET,
 
         onSuccess: async (data: any) => {
           console.log('success', data);
