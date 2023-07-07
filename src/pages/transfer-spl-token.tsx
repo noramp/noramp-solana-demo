@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React, { useCallback, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import Celebrate from '../components/Celebrate';
-import { TRANSFER_CONFIG } from '../config/config';
+import { IS_MAINNET, TRANSFER_CONFIG } from '../config/config';
 
 const TransferPage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ const TransferPage: NextPage = () => {
         // @ts-ignore
         window.initializeNoRamp({
           priceId: TRANSFER_CONFIG.PRICE_ID,
-          testnet: true,
+          testnet: !IS_MAINNET,
 
           onSuccess: async (data: any) => {
             console.log('success', data);

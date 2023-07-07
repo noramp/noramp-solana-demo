@@ -8,3 +8,5 @@ export const MINT_CONFIG = {
 export const TRANSFER_CONFIG = {
   PRICE_ID: process.env.NEXT_PUBLIC_NORAMP_TRANSFER_PRICE_ID,
 };
+
+export const IS_MAINNET = process.env.NEXT_PUBLIC_IS_MAINNET === 'true';
