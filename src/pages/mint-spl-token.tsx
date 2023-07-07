@@ -62,6 +62,7 @@ const MintPage: NextPage = () => {
         window.NoRamp.open();
       } catch (e) {
         toast.error('Error creating price');
+        setIsLoading(false);
       }
     },
     []
