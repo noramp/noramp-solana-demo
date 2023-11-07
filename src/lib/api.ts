@@ -20,3 +20,19 @@ export const createPrice = async (nftData: SolanaMintNFTData) => {
 
   return response.data;
 };
+
+export type SolanaMintCompressedNFTData = {
+  name: string;
+  symbol: string;
+  metadata_uri: string;
+};
+
+export const createCompressedPrice = async (
+  nftData: SolanaMintCompressedNFTData
+) => {
+  const response = await axios.post('/api/compressed/prices', nftData, {
+    baseURL: process.env.NEXT_PUBLIC_APP_URL,
+  });
+
+  return response.data;
+};

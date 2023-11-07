@@ -41,6 +41,15 @@ export default function Header() {
                 Transfer SPL-Token
               </Link>
             </li>
+
+            <li className="p-1">
+              <Link
+                href="/compressed/mint"
+                className="flex items-center h-full text-sm font-medium tracking-normal text-gray-800 border-b-2 border-transparent cursor-pointer focus:outline-none hover:text-purple-700"
+              >
+                Mint Compressed
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
